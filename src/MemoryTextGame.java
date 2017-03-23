@@ -58,13 +58,13 @@ public class MemoryTextGame {
         int cardChoise, row1, col1, row2, col2;
         System.out.println();
         System.out.println(currentPlayer+" enter the number on the card.");
-        System.out.print("First Card Choise? >");
+        System.out.print("First Card Choice? >");
         cardChoise = getInputAsInt();
         row1 = cardChoise / 4;
         col1 = cardChoise % 4;
         board[row1][col1].setShowingStatus();
 
-        System.out.print("Second Card Choise? >");
+        System.out.print("Second Card Choice? >");
         cardChoise = getInputAsInt();
         row2 = cardChoise / 4;
         col2 = cardChoise % 4;
