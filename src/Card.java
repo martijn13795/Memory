@@ -1,6 +1,3 @@
-/**
- * Created by marti on 20-3-2017.
- */
 public class Card {
     boolean showing;
     String back;

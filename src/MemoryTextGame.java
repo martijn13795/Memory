@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class MemoryTextGame {
     private Card [][] board;
-    private String[] words = {"Blue", "Blue", "Red", "Red", "Green", "Green", "Yellow", "Yellow", "Purple", "Purple", "Pink", "Pink", "Brown", "Brown", "Orange", "Orange"};
+    private String[] names = {"Jochen", "Jochen", "Winnie", "Winnie", "René", "René", "Niels", "Niels", "Rob", "Rob", "Elleke", "Elleke", "Jeroen", "Jeroen", "Albert", "Albert"};
     private Random r;
     private Scanner reader;
     private Boolean multiplayer;
@@ -55,19 +55,19 @@ public class MemoryTextGame {
 
     public void choosePairOfCards()
     {
-        int cardChoise, row1, col1, row2, col2;
+        int cardChoice, row1, col1, row2, col2;
         System.out.println();
         System.out.println(currentPlayer+" enter the number on the card.");
         System.out.print("First Card Choice? >");
-        cardChoise = getInputAsInt();
-        row1 = cardChoise / 4;
-        col1 = cardChoise % 4;
+        cardChoice = getInputAsInt();
+        row1 = cardChoice / 4;
+        col1 = cardChoice % 4;
         board[row1][col1].setShowingStatus();
 
         System.out.print("Second Card Choice? >");
-        cardChoise = getInputAsInt();
-        row2 = cardChoise / 4;
-        col2 = cardChoise % 4;
+        cardChoice = getInputAsInt();
+        row2 = cardChoice / 4;
+        col2 = cardChoice % 4;
         board[row2][col2].setShowingStatus();
 
         System.out.print('\u000C'); //clears the screen
@@ -80,7 +80,7 @@ public class MemoryTextGame {
         {
             for (int col = 0; col < board[0].length; col++)
             {
-                if (board[row][col].showing == false) {
+                if (!board[row][col].showing) {
                     gameOver++;
                 }
                 a++;
@@ -100,13 +100,13 @@ public class MemoryTextGame {
         if (board[row1][col1].back.equals(board[row2][col2].back)) {
             if (currentPlayer.equals(player1)) {
                 player1Score++;
-                System.out.println(player1+"\'s score: "+player1Score);
+                System.out.println(player1+"\'s score: " + player1Score);
                 if (multiplayer.equals(true)) {
                     System.out.println(player2 + "\'s score: " + player2Score);
                 }
             } else {
                 player2Score++;
-                System.out.println(player1+"\'s score: "+player1Score);
+                System.out.println(player1+"\'s score: " + player1Score);
                 if (multiplayer.equals(true)) {
                     System.out.println(player2 + "\'s score: " + player2Score);
                 }
@@ -120,13 +120,13 @@ public class MemoryTextGame {
                 if (multiplayer.equals(true)) {
                     currentPlayer = player2;
                 }
-                System.out.println(player1+"\'s score: "+player1Score);
+                System.out.println(player1+"\'s score: " + player1Score);
                 if (multiplayer.equals(true)) {
                     System.out.println(player2 + "\'s score: " + player2Score);
                 }
             } else {
                 currentPlayer = player1;
-                System.out.println(player1+"\'s score: "+player1Score);
+                System.out.println(player1+"\'s score: " + player1Score);
                 if (multiplayer.equals(true)) {
                     System.out.println(player2 + "\'s score: " + player2Score);
                 }
@@ -144,7 +144,7 @@ public class MemoryTextGame {
             for (int col = 0; col < board[0].length; col++)
             {
                 {
-                    board[row][col] = new Card(words[a], a);
+                    board[row][col] = new Card(names[a], a);
                     a++;
                 }
             }
@@ -167,12 +167,12 @@ public class MemoryTextGame {
 
     public void shuffle()
     {
-        for (int a = 0; a < words.length; a++)
+        for (int a = 0; a < names.length; a++)
         {
-            int pos = r.nextInt(words.length);
-            String temp = words[a];
-            words[a] = words[pos];
-            words[pos] = temp;
+            int pos = r.nextInt(names.length);
+            String temp = names[a];
+            names[a] = names[pos];
+            names[pos] = temp;
         }
     }
 
