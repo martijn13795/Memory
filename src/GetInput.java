@@ -5,6 +5,8 @@ public class GetInput {
     private Scanner reader;
 
     public String getInput() {
-        return reader.nextLine();
+        reader = new Scanner(System.in);
+        String input = reader.nextLine();
+        return input;
     }
 }
