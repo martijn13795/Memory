@@ -6,6 +6,7 @@ public class ChoosePairOfCards {
     GetInput input = new GetInput();
     MakeCards cards = new MakeCards();
     Card[][] board = cards.makeCards();
+    Print print = new Print();
 
     public void choosePairOfCards(PlayerInfo player1, PlayerInfo player2) {
         new Print().printCards(board);
@@ -29,7 +30,8 @@ public class ChoosePairOfCards {
 
         System.out.print('\u000C'); //clears the screen
 
-        new Print().printCards(board);
+        print.printCards(board);
+
 
         int a = 0;
         int gameOver = 0;
@@ -55,7 +57,13 @@ public class ChoosePairOfCards {
         }
 
         if (board[row1][col1].back.equals(board[row2][col2].back)) {
+            Score score = new Score();
+            score.setScore(currentPlayer, player1, player2);
             System.out.println("You have scored!");
+            print.print("Player 1 score: " + score.getScoreP1());
+            if (player2 != null){
+                print.print("Player 2 score: " + score.getScoreP2());
+            }
             choosePairOfCards(player1, player2);
         } else {
             System.out.println("Better luck next time");
