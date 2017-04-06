@@ -1,13 +1,11 @@
 public class ChoosePairOfCards {
 
     private String currentPlayer;
-    PlayerInfo player1 = new PlayerInfo();
-    PlayerInfo player2 = new PlayerInfo();
     GetInput input = new GetInput();
     MakeCards cards = new MakeCards();
     Card[][] board = cards.makeCards();
 
-    public void choosePairOfCards() {
+    public void choosePairOfCards(PlayerInfo player1, PlayerInfo player2) {
         cards.printCards(board);
         currentPlayer = player1.getName();
         int cardChoice, row1, col1, row2, col2;
@@ -54,12 +52,12 @@ public class ChoosePairOfCards {
 
         if (board[row1][col1].back.equals(board[row2][col2].back)) {
 
-            choosePairOfCards();
+            choosePairOfCards(player1, player2);
         } else {
             board[row1][col1].setShowingStatus();
             board[row2][col2].setShowingStatus();
             System.out.print('\u000C');
-            choosePairOfCards();
+            choosePairOfCards(player1, player2);
         }
     }
 }

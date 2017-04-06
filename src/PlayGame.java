@@ -25,7 +25,7 @@ public class PlayGame {
             new Print().print("Player1: "+player1.getName());
         }
 
-        new ChoosePairOfCards().choosePairOfCards();
+        new ChoosePairOfCards().choosePairOfCards(player1, player2);
 
     }
 }
