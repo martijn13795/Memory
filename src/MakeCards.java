@@ -33,17 +33,4 @@ public class MakeCards {
             names[pos] = temp;
         }
     }
-
-    public void printCards(Card[][] board) {
-        Card aCard;
-        for (int row = 0; row < board.length; row++)
-        {
-            for (int col = 0; col < board[0].length; col++)
-            {
-                aCard = board [row][col];
-                aCard.showCard();
-            }
-            System.out.println();
-        }
-    }
 }

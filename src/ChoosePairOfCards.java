@@ -1,13 +1,17 @@
+import javax.swing.*;
+
 public class ChoosePairOfCards {
 
-    private String currentPlayer;
+    private String currentPlayer = "";
     GetInput input = new GetInput();
     MakeCards cards = new MakeCards();
     Card[][] board = cards.makeCards();
 
     public void choosePairOfCards(PlayerInfo player1, PlayerInfo player2) {
-        cards.printCards(board);
-        currentPlayer = player1.getName();
+        new Print().printCards(board);
+        if (currentPlayer.equals("")) {
+            currentPlayer = player1.getName();
+        }
         int cardChoice, row1, col1, row2, col2;
         System.out.println();
         System.out.println(currentPlayer+" enter the number on the card.");
@@ -15,17 +19,17 @@ public class ChoosePairOfCards {
         cardChoice = Integer.parseInt(input.getInput());
         row1 = cardChoice / 4;
         col1 = cardChoice % 4;
-        board[row1][col1].setShowingStatus();
+        board[row1][col1] = new StateVisible().setShowingStatus(true, board[row1][col1]);
 
         System.out.print("Second Card Choice? >");
         cardChoice = Integer.parseInt(input.getInput());
         row2 = cardChoice / 4;
         col2 = cardChoice % 4;
-        board[row2][col2].setShowingStatus();
+        board[row2][col2] = new StateVisible().setShowingStatus(true, board[row2][col2]);
 
         System.out.print('\u000C'); //clears the screen
 
-        cards.printCards(board);
+        new Print().printCards(board);
 
         int a = 0;
         int gameOver = 0;
@@ -45,17 +49,23 @@ public class ChoosePairOfCards {
             System.out.println("Game Over");
             System.out.println(player1.getName()+"\'s score: " + "Score");
             if (player2.getName() != null) {
-                System.out.println(player2 + "\'s score: " + "score");
+                System.out.println(player2.getName() + "\'s score: " + "score");
             }
             return;
         }
 
         if (board[row1][col1].back.equals(board[row2][col2].back)) {
-
+            System.out.println("You have scored!");
             choosePairOfCards(player1, player2);
         } else {
-            board[row1][col1].setShowingStatus();
-            board[row2][col2].setShowingStatus();
+            System.out.println("Better luck next time");
+            if (currentPlayer.equals(player1.getName())){
+                currentPlayer = player2.getName();
+            } else {
+                currentPlayer = player1.getName();
+            }
+            board[row1][col1] = new StateInvisible().setShowingStatus(false, board[row1][col1]);
+            board[row2][col2] = new StateInvisible().setShowingStatus(false, board[row2][col2]);
             System.out.print('\u000C');
             choosePairOfCards(player1, player2);
         }
